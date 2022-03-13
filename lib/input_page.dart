@@ -6,7 +6,7 @@ import 'icon_content.dart';
 const bottomContainerHeight = 80.0;
 const reuseableCardColor = Color(0xFF1D1E33);
 
-const bottomContainerColor = Colors.red;
+const bottomContainerColor = Colors.purple;
 
 // ignore: use_key_in_widget_constructors
 class InputPage extends StatefulWidget {
@@ -22,6 +22,7 @@ class _InputPageState extends State<InputPage> {
         title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -29,27 +30,54 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: reuseableCardColor,
-                    cardChild: IconContent(
+                    child: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: IconContent(
-                    icon: FontAwesomeIcons.venus,
-                    label: 'FEMALE',
+                  child: ReusableCard(
+                    color: reuseableCardColor,
+                    child: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          const Expanded(child: IconContent()),
+          Expanded(
+            child: ReusableCard(
+              color: reuseableCardColor,
+              child: IconContent(
+                icon: FontAwesomeIcons.addressBook,
+                label: 'Empty',
+              ),
+            ),
+          ),
           Expanded(
             child: Row(
-              children: const [
-                Expanded(child: IconContent()),
-                Expanded(child: IconContent()),
+              children: [
+                Expanded(
+                  child: ReusableCard(
+                    color: reuseableCardColor,
+                    child: IconContent(
+                      icon: FontAwesomeIcons.cheese,
+                      label: 'EMPTY',
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    color: reuseableCardColor,
+                    child: IconContent(
+                      icon: FontAwesomeIcons.pizzaSlice,
+                      label: 'EMPTY',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
