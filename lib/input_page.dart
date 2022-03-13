@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reuseable_card.dart';
+import 'icon_content.dart';
 
 const bottomContainerHeight = 80.0;
 const reuseableCardColor = Color(0xFF1D1E33);
@@ -24,20 +27,29 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(color: reuseableCardColor),
+                  child: ReusableCard(
+                    color: reuseableCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(color: reuseableCardColor),
+                  child: IconContent(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
+                  ),
                 ),
               ],
             ),
           ),
-          Expanded(child: ReusableCard(color: reuseableCardColor)),
+          const Expanded(child: IconContent()),
           Expanded(
             child: Row(
-              children: [
-                Expanded(child: ReusableCard(color: reuseableCardColor)),
-                Expanded(child: ReusableCard(color: reuseableCardColor)),
+              children: const [
+                Expanded(child: IconContent()),
+                Expanded(child: IconContent()),
               ],
             ),
           ),
@@ -48,22 +60,6 @@ class _InputPageState extends State<InputPage> {
             height: bottomContainerHeight,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-// ignore: use_key_in_widget_constructors
-  ReusableCard({required this.color});
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
