@@ -21,21 +21,18 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColor = inactiveCardColor;
   Color femaleCardColor = inactiveCardColor;
 
-//1 = male, 2 = female
+//male card pressed
   updateColor(Gender gender) {
     if (gender == Gender.male) {
-      if (maleCardColor == inactiveCardColor) {
-        maleCardColor = activeCardColor;
-      } else {
-        maleCardColor = inactiveCardColor;
-      }
+      maleCardColor == inactiveCardColor
+          ? maleCardColor = activeCardColor
+          : maleCardColor = inactiveCardColor;
     }
+    //Female button pressed.
     if (gender == Gender.female) {
-      if (femaleCardColor == inactiveCardColor) {
-        femaleCardColor = activeCardColor;
-      } else {
-        femaleCardColor = inactiveCardColor;
-      }
+      femaleCardColor == inactiveCardColor
+          ? femaleCardColor = activeCardColor
+          : femaleCardColor = inactiveCardColor;
     }
   }
 
