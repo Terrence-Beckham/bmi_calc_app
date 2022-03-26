@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ReusableCard extends StatelessWidget {
 // ignore: use_key_in_widget_constructors
-  ReusableCard({required this.color, required this.child});
+  const ReusableCard({required this.color, required this.child});
 
   final Color color;
   final Widget child;
