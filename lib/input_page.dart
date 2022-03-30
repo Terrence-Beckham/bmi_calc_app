@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reuseable_card.dart';
 import 'icon_content.dart';
-
-const bottomContainerHeight = 80.0;
-const reuseableCardColor = Color(0xFF1D1E33);
-const bottomContainerColor = Color(0xFFEB1555);
-const inactiveCardColor = Color(0xFF111328);
-const activeCardColor = Color(0xFF1D1E33);
+import 'constants.dart';
 
 enum Gender { male, female, none }
 
@@ -19,6 +14,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   late Gender selectedGender = Gender.none;
+  int height = 100;
+  int weight = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +38,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    child: IconContent(
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
+                    cardChild: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                     ),
@@ -59,9 +56,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    child: IconContent(
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
+                    cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
                     ),
@@ -70,15 +67,55 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
+
+          //Height Slider
           Expanded(
             child: ReusableCard(
               onPress: () {
                 setState(() {});
               },
-              color: reuseableCardColor,
-              child: IconContent(
-                icon: FontAwesomeIcons.addressBook,
-                label: 'Empty',
+              color: kReuseableCardColor,
+              cardChild: Column(
+                children: [
+                  const Text(
+                    'Height',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(height.toString(), style: kNumberTextStyle),
+                      const Text(
+                        'in',
+                        style: kLabelTextStyle,
+                      ),
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 15.0),
+                          overlayShape: const RoundSliderOverlayShape(
+                              overlayRadius: 30.0),
+                          thumbColor: const Color(0xFFEB1555),
+                          overlayColor: const Color(0xFFEB1555),
+                          activeTrackColor: Colors.white,
+                        ),
+                        child: Slider(
+                          value: height.toDouble(),
+                          min: 36,
+                          max: 100,
+                          onChanged: (double newValue) {
+                            debugPrint(newValue.toString());
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
@@ -87,14 +124,26 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
+                    color: kReuseableCardColor,
+                    // cardChild: IconContent(
+                    //   icon: FontAwesomeIcons.cheese,
+                    //   label: 'EMPTY',
+                    // ),
+                    cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'WEIGHT',
+                            style: kLabelTextStyle,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kNumberTextStyle,
+                          )
+                        ]),
                     onPress: () {
                       setState(() {});
                     },
-                    color: reuseableCardColor,
-                    child: IconContent(
-                      icon: FontAwesomeIcons.cheese,
-                      label: 'EMPTY',
-                    ),
                   ),
                 ),
                 Expanded(
@@ -102,8 +151,8 @@ class _InputPageState extends State<InputPage> {
                     onPress: () {
                       setState(() {});
                     },
-                    color: reuseableCardColor,
-                    child: IconContent(
+                    color: kReuseableCardColor,
+                    cardChild: IconContent(
                       icon: FontAwesomeIcons.pizzaSlice,
                       label: 'EMPTY',
                     ),
@@ -113,10 +162,10 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             width: double.infinity,
             margin: const EdgeInsets.only(top: 10),
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
