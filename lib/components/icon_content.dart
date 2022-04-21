@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class IconContent extends StatelessWidget {
   // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables

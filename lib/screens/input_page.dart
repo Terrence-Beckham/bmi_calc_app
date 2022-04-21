@@ -1,10 +1,11 @@
-import 'dart:ui';
-import 'package:bmi_calc_app/results_page.dart';
+import 'package:bmi_calc_app/screens/results_page.dart';
+import 'package:bmi_calc_app/components/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reuseable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import '../components/bottom_button.dart';
+import '../components/reuseable_card.dart';
+import '../components/icon_content.dart';
+import '../constants.dart';
 
 enum Gender { male, female, none }
 
@@ -202,7 +203,6 @@ class _InputPageState extends State<InputPage> {
                                   setState(() {
                                     age--;
                                   });
-                                  ;
                                 },
                               ),
                               const SizedBox(width: 10.0),
@@ -223,41 +223,18 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+
+          //Calculate Button
+          BottomButton(
+            buttonTitle: 'Calculate',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const ResultsPage();
               }));
             },
-            child: Container(
-              child: const Text('CALCULATE'),
-              color: kBottomContainerColor,
-              width: double.infinity,
-              margin: const EdgeInsets.only(top: 10),
-              height: kBottomContainerHeight,
-            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const RoundIconButton({required this.icon, required this.onPress});
-  final IconData icon;
-  final VoidCallback onPress;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: const CircleBorder(),
-      // fillColor: const Color(0x00ff4c4f),
-      fillColor: const Color(0xFF4C4F5E), elevation: 6.0,
-
-      onPressed: onPress,
     );
   }
 }
